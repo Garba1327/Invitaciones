@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación XV Años</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Outfit", sans-serif;
+        background: #ede6e5;
+        color: #1c1717;
+        overflow-x: hidden;
+      }
+
+      /* Pantalla de inicio con animación */
+      .pantalla-inicio {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 182, 193, 0.4) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 218, 224, 0.4) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(241, 213, 199, 0.3) 0%,
+            transparent 60%
+          ),
+          linear-gradient(
+            135deg,
+            #ffd6e0 0%,
+            #ffe8ee 25%,
+            #fff5f7 50%,
+            #ffeef3 75%,
+            #ffd9e5 100%
+          );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition:
+          opacity 1s ease,
+          transform 1s ease;
+        overflow: hidden;
+      }
+      .pantalla-inicio::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="30" cy="40" r="2" fill="%23FFD700" opacity="0.6"/><circle cx="150" cy="80" r="1.5" fill="%23FFD700" opacity="0.5"/><circle cx="100" cy="150" r="2.5" fill="%23FFC0CB" opacity="0.4"/><circle cx="60" cy="120" r="1.8" fill="%23FFB6C1" opacity="0.5"/><circle cx="170" cy="30" r="2.2" fill="%23FFD700" opacity="0.6"/><circle cx="20" cy="160" r="1.5" fill="%23FFC0CB" opacity="0.5"/><circle cx="180" cy="150" r="2" fill="%23FFD700" opacity="0.5"/><circle cx="90" cy="50" r="1.5" fill="%23FFB6C1" opacity="0.4"/></svg>');
+        background-size: 200px 200px;
+        animation: sparkle 20s linear infinite;
+        opacity: 0.6;
+      }
+      .pantalla-inicio::after {
+        content: "🌸";
+        position: absolute;
+        font-size: 8rem;
+        opacity: 0.08;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-15deg);
+        pointer-events: none;
+      }
+      @keyframes sparkle {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+      .pantalla-inicio.oculta {
+        opacity: 0;
+        transform: scale(1.1);
+        pointer-events: none;
+      }
+      .pantalla-inicio h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        color: #625d5d;
+        margin: 0 0 1rem 0;
+        animation: fadeInUp 1s ease;
+      }
+      .pantalla-inicio p {
+        font-size: 1.3rem;
+        color: #1c1717;
+        margin: 0.5rem;
+        animation: fadeInUp 1.2s ease;
+      }
+      .icono-scroll {
+        margin-top: 2rem;
+        font-size: 3rem;
+        color: #f1d5c7;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Contenedor principal con efectos */
+      .contenido {
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+      .contenido.visible {
+        opacity: 1;
+      }
+
+      /* Flores animadas en los lados */
+      .flores-decoracion {
+        position: fixed;
+        top: 0;
+        width: 50vw;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 10;
+        pointer-events: none;
+        transition:
+          transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 1s ease;
+        opacity: 1;
+      }
+      .flores-izquierda {
+        left: 0;
+        background-image: url("https://dr03x6mpfky2d.cloudfront.net/public/animaciones/flores/flowers-left1.png");
+        background-position: right center;
+        transform: translateX(0);
+      }
+      .flores-derecha {
+        right: 0;
+        background-image: url("https://dr03x6mpfky2d.cloudfront.net/public/animaciones/flores/flowers-right1.png");
+        background-position: left center;
+        transform: translateX(0);
+      }
+      .flores-decoracion.separadas.flores-izquierda {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      .flores-decoracion.separadas.flores-derecha {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      .portada {
+        background: url("https://i.pinimg.com/originals/c8/28/f9/c828f9b7beb129a2547f311047e4707b.jpg")
+          center/cover no-repeat;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 2rem 4rem 2rem 2rem;
+        color: #fff;
+        text-shadow:
+          3px 3px 12px rgba(0, 0, 0, 0.9),
+          0px 0px 20px rgba(0, 0, 0, 0.8),
+          -2px -2px 8px rgba(0, 0, 0, 0.6);
+        position: relative;
+        margin-top: 30vh;
+          /* filter: grayscale(100%); */ /* Commented out to add back */
+          filter: grayscale(100%);
+      }
+      .portada-contenido {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInContent 1s ease 0.5s forwards;
+        margin-top: 10rem;
+        text-align: right;
+        margin-right: 3rem;
+      }
+      @keyframes fadeInContent {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .portada h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        margin: 0.3em 0;
+        letter-spacing: 2px;
+      }
+      .portada p {
+        font-size: 1.8rem;
+        margin: 0.2em 0;
+      }
+
+      .bloque {
+        background: #fff;
+        margin: 2rem auto;
+        border-radius: 16px;
+        max-width: 500px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .bloque.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .frase {
+        font-size: 1.2rem;
+        font-style: italic;
+        text-align: center;
+      }
+      .contador {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+        flex-wrap: wrap;
+      }
+      .contador .item {
+        text-align: center;
+        min-width: 70px;
+      }
+      .contador .num {
+        font-size: 2rem;
+        font-weight: bold;
+        background: #f1d5c7;
+        border-radius: 8px;
+        padding: 0.5em 0.8em;
+        color: #625d5d;
+        transition: transform 0.3s ease;
+        white-space: nowrap;
+      }
+      .contador .num:hover {
+        transform: scale(1.1);
+      }
+      .itinerario {
+        margin: 1.5rem 0;
+      }
+      .itinerario-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: slideIn 0.5s ease forwards;
+      }
+      .itinerario-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .itinerario-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .itinerario-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .itinerario-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .itinerario-item:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .itinerario-item:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .itinerario-hora {
+        font-weight: bold;
+        width: 90px;
+      }
+      .mesa-regalos {
+        text-align: center;
+      }
+      .ubicacion iframe {
+        width: 100%;
+        border-radius: 12px;
+        border: 0;
+        height: 250px;
+      }
+      .confirmar {
+        text-align: center;
+        margin-top: 2rem;
+      }
+      button {
+        background: #f1d5c7;
+        color: #1c1717;
+        border: none;
+        border-radius: 10px;
+        padding: 0.7em 2em;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin: 0.5em;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      button:hover {
+        background: #e8c4b7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      button:active {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 600px) {
+        .bloque {
+          padding: 1rem;
+          margin: 1rem;
+        }
+        .portada {
+          padding: 1rem;
+        }
+        .portada h1 {
+          font-size: 2.5rem;
+        }
+        .portada p {
+          font-size: 1.2rem;
+        }
+        .pantalla-inicio h2 {
+          font-size: 1.8rem;
+        }
+        .contador {
+          gap: 0.8rem;
+        }
+        .contador .item {
+          min-width: 60px;
+          font-size: 0.9rem;
+        }
+        .contador .num {
+          font-size: 1.5rem;
+          padding: 0.4em 0.6em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Reproductor de música de fondo -->
+    <audio id="musicaFondo" loop>
+      <source
+        src="https://raw.githubusercontent.com/Garba1327/fotos/d97a022161cf92bbd92f7b00d12d3de0dc9fcf27/Zoe-Luna-_Versi%C3%B3n-Karaoke_.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <!-- Pantalla de inicio -->
+    <div class="pantalla-inicio" id="pantallaInicio">
+      <button
+        id="btnMusica"
+        style="
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: #f1d5c7;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          font-size: 1.5rem;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+        "
+      >
+        🔇
+      </button>
+      <h2>Invitación XV Años</h2>
+      <p>Desliza para abrir</p>
+      <div class="icono-scroll">↓</div>
+    </div>
+
+    <!-- Flores decorativas -->
+    <div class="flores-decoracion flores-izquierda" id="floresIzq"></div>
+    <div class="flores-decoracion flores-derecha" id="floresDer"></div>
+
+    <!-- Contenido principal -->
+    <div class="contenido" id="contenido">
+      <div class="portada">
+        <div class="portada-contenido">
+          <p>XV Años</p>
+          <h1>Kitzya</h1>
+          <p>21 • Marzo • 2026</p>
+        </div>
+      </div>
+
+      <br /><br /><br /><br /><br />
+
+      <div class="bloque frase">
+        “Como no recordar que hace 15 años nació la flor más hermosa de este
+        hogar, por eso te queremos invitar a su celebración, con mucha alegría y
+        dando gracias a Dios por regalarme tan hermosa bendición”
+        <br /><br />
+        <b>- Sr. Luis Antonio y </b>
+      </div>
+
+      <div class="bloque">
+        <h2 style="text-align: center">Cuenta regresiva</h2>
+        <div class="contador" id="contador">
+          <div class="item">
+            <div class="num" id="dias">00</div>
+            <div>Días</div>
+          </div>
+          <div class="item">
+            <div class="num" id="horas">00</div>
+            <div>Horas</div>
+          </div>
+          <div class="item">
+            <div class="num" id="minutos">00</div>
+            <div>Minutos</div>
+          </div>
+          <div class="item">
+            <div class="num" id="segundos">00</div>
+            <div>Segundos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloque">
+        <h2 style="text-align: center">Código de vestimenta</h2>
+        <p style="text-align: center; font-size: 1.1rem">Formal</p>
+        <p
+          style="
+            text-align: center;
+            font-size: 0.95rem;
+            color: #625d5d;
+            margin: 1rem 0 2rem 0;
+          "
+        >
+          Nos reservamos una paleta de tonos suaves como nude y rosa claro.
+        </p>
+
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #e8ddd5;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #efe2ca;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #f5e6e8;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #fdd7e4;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #f4c2c2;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+          <div
+            style="
+              width: 50px;
+              height: 50px;
+              background: #ffb6c1;
+              border-radius: 50%;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+        </div>
+      </div>
+
+      <div class="bloque">
+        <h2 style="text-align: center">Itinerario</h2>
+        <div class="itinerario">
+          <div class="itinerario-item">
+            <span class="itinerario-hora">05:30 pm</span> Ceremonia religiosa
+          </div>
+          <div class="itinerario-item">
+            <span class="itinerario-hora">07:30 pm</span> Recepción
+          </div>
+        </div>
+      </div>
+
+      <div class="bloque ubicacion">
+        <h2 style="text-align: center">Ubicación</h2>
+        <h2 style="text-align: center">Parroquia</h2>
+        <p style="text-align: center">Parroquia de la Preciosa Sangre</p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!4v1770067799286!6m8!1m7!1sKJJp9HtWtXTn_SBY9GBe6A!2m2!1d19.55760592333539!2d-99.1357761972113!3f113.01638630956644!4f0!5f0.7820865974627469"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div style="text-align: center; margin-top: 1em">
+          <a
+            href="https://www.google.com/maps/place/19°33'27.4%22N+99°08'08.8%22W/@19.5576059,-99.1357762,17z"
+            target="_blank"
+            ><button>Abrir en Google Maps</button></a
+          >
+        </div>
+      </div>
+
+      <div class="bloque ubicacion">
+        <h2 style="text-align: center">Salón</h2>
+        <p style="text-align: center">Salón jardín luigi</p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7581.907773137109!2d-99.1404978614855!3d19.54892471567756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f70c1442f6d9%3A0x22bc6f191bab28c9!2zU2Fsw7NuIGphcmTDrW4gbHVpZ2k!5e0!3m2!1ses-419!2smx!4v1770077831018!5m2!1ses-419!2smx"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div style="text-align: center; margin-top: 1em">
+          <a
+            href="https://www.google.com/maps/place/Salón+jardín+luigi/@19.548925,-99.1404979,17z"
+            target="_blank"
+            ><button>Abrir en Google Maps</button></a
+          >
+        </div>
+      </div>
+
+      <div class="bloque confirmar">
+        <h2>¿Confirmas tu asistencia?</h2>
+        <a
+          href="https://wa.me/5215630129651?text=¡Claro%20que%20sí%20Kitzya!%20Va%20a%20ser%20un%20placer%20acompañarte%20en%20tu%20fiesta%20🎉"
+          target="_blank"
+          ><button>Confirmar</button></a
+        >
+        <a
+          href="https://pbs.twimg.com/media/FS_FCodUUAAsTjz.jpg"
+          target="_blank"
+          ><button>No puedo asistir</button></a
+        >
+      </div>
+    </div>
+    <!-- Fin contenido -->
+
+    <script>
+      // Cuenta regresiva
+      const fechaEvento = new Date("2026-03-21T17:30:00");
+      function actualizaContador() {
+        const ahora = new Date();
+        const diff = fechaEvento - ahora;
+        if (diff > 0) {
+          const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutos = Math.floor((diff / (1000 * 60)) % 60);
+          const segundos = Math.floor((diff / 1000) % 60);
+          document.getElementById("dias").textContent = dias
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("horas").textContent = horas
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("minutos").textContent = minutos
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("segundos").textContent = segundos
+            .toString()
+            .padStart(2, "0");
+        }
+      }
+      setInterval(actualizaContador, 1000);
+      actualizaContador();
+
+      // Animación de entrada y flores
+      let scrollActivado = false;
+
+      function activarContenido() {
+        if (!scrollActivado) {
+          scrollActivado = true;
+
+          // Activar música al abrir
+          const musica = document.getElementById("musicaFondo");
+          musica.volume = 0.3;
+          musica.play().catch(() => console.log("Autoplay bloqueado"));
+          document.getElementById("btnMusica").textContent = "🔊";
+
+          // Ocultar pantalla de inicio
+          document.getElementById("pantallaInicio").classList.add("oculta");
+
+          // Mostrar contenido principal
+          setTimeout(() => {
+            document.getElementById("contenido").classList.add("visible");
+          }, 500);
+
+          // Separar flores
+          setTimeout(() => {
+            document.getElementById("floresIzq").classList.add("separadas");
+            document.getElementById("floresDer").classList.add("separadas");
+          }, 800);
+        }
+      }
+
+      function desactivarContenido() {
+        scrollActivado = false;
+        document.getElementById("pantallaInicio").classList.remove("oculta");
+        document.getElementById("contenido").classList.remove("visible");
+        document.getElementById("floresIzq").classList.remove("separadas");
+        document.getElementById("floresDer").classList.remove("separadas");
+      }
+
+      // Detectar scroll o toque para activar animaciones
+      let ultimaPosicion = 0;
+      window.addEventListener("wheel", (e) => {
+        if (window.scrollY < 50) {
+          desactivarContenido();
+        } else {
+          activarContenido();
+        }
+      });
+
+      window.addEventListener("touchmove", () => {
+        if (window.scrollY < 50) {
+          desactivarContenido();
+        } else {
+          activarContenido();
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY < 50) {
+          desactivarContenido();
+        } else if (!scrollActivado) {
+          activarContenido();
+        }
+      });
+
+      // Animación de bloques al hacer scroll
+      const observador = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".bloque").forEach((bloque) => {
+        observador.observe(bloque);
+      });
+
+      // Control de música de fondo
+      const musica = document.getElementById("musicaFondo");
+      const btnMusica = document.getElementById("btnMusica");
+      let musicaActivada = true;
+
+      // Establecer volumen bajo (30%)
+      musica.volume = 0.3;
+
+      btnMusica.addEventListener("click", () => {
+        if (musicaActivada) {
+          musica.pause();
+          btnMusica.textContent = "🔇";
+          musicaActivada = false;
+        } else {
+          musica.play();
+          btnMusica.textContent = "🔊";
+          musicaActivada = true;
+        }
+      });
+
+      // Intentar reproducir música automáticamente al interactuar
+      function iniciarMusica() {
+        musica
+          .play()
+          .then(() => {
+            btnMusica.textContent = "🔊";
+            musicaActivada = true;
+          })
+          .catch(() => {
+            // Los navegadores bloquean autoplay, se activará con la primera interacción
+            musicaActivada = false;
+            btnMusica.textContent = "🔇";
+          });
+      }
+
+      // Intentar iniciar al cargar
+      window.addEventListener("load", iniciarMusica);
+      window.addEventListener("wheel", iniciarMusica, { once: true });
+      window.addEventListener("touchstart", iniciarMusica, { once: true });
+      window.addEventListener("click", iniciarMusica, { once: true });
+    </script>
+  </body>
+</html>
