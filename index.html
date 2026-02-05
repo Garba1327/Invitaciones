@@ -201,7 +201,7 @@
           -2px -2px 8px rgba(0, 0, 0, 0.6);
         position: relative;
         margin-top: 30vh;
-          /*filter: grayscale(100%);*/
+        /*filter: grayscale(100%);*/
       }
       .portada-contenido {
         opacity: 0;
@@ -248,8 +248,88 @@
 
       .frase {
         font-size: 1.2rem;
-        font-style: italic;
         text-align: center;
+      }
+      .titulo-seccion {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .titulo-dorado {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: #daa520;
+        margin: 0.5rem 0;
+        text-shadow: 0 2px 4px rgba(218, 165, 32, 0.3);
+        letter-spacing: 1px;
+      }
+      .detalle-dorado {
+        width: 150px;
+        height: 30px;
+        background-image: url("https://inv.invitame.top/media/decoraciones/oro/9_separador.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 0.5rem auto;
+      }
+      .nombres-padres,
+      .nombres-padrinos {
+        font-size: 1.1rem;
+        color: #625d5d;
+        margin: 1rem 0;
+        line-height: 1.8;
+      }
+      .lluvia-sobres {
+        background: linear-gradient(135deg, #f8f4f0 0%, #fff5f7 100%);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .lluvia-sobres::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        left: -50px;
+        right: -50px;
+        bottom: -50px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="20" cy="30" r="1" fill="%23DAA520" opacity="0.3"/><circle cx="70" cy="60" r="1.5" fill="%23DAA520" opacity="0.2"/><circle cx="50" cy="80" r="1.2" fill="%23DAA520" opacity="0.4"/></svg>');
+        animation: flotar 15s linear infinite;
+        opacity: 0.6;
+        z-index: 1;
+      }
+      @keyframes flotar {
+        0% {
+          transform: translateY(100px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+      .lluvia-content {
+        position: relative;
+        z-index: 2;
+      }
+      .icono-sobre {
+        font-size: 3.5rem;
+        margin: 1rem 0;
+        animation: balanceo 3s ease-in-out infinite;
+        display: inline-block;
+      }
+      @keyframes balanceo {
+        0%,
+        100% {
+          transform: rotate(-5deg);
+        }
+        50% {
+          transform: rotate(5deg);
+        }
+      }
+      .texto-lluvia {
+        font-size: 1.1rem;
+        color: #625d5d;
+        line-height: 1.6;
+        max-width: 400px;
+        margin: 0 auto;
+        animation: fadeInUp 1s ease;
       }
       .contador {
         display: flex;
@@ -431,15 +511,28 @@
       <br /><br /><br /><br /><br />
 
       <div class="bloque frase">
-        “Como no recordar que hace 15 años nació la flor más hermosa de este
-        hogar, por eso te queremos invitar a su celebración, con mucha alegría y
-        dando gracias a Dios por regalarme tan hermosa bendición”
-        <br /><br />
-        <b>- Sr. Luis Antonio y Sra. Marisol</b>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Mis Papás</h3>
+          <div class="detalle-dorado"></div>
+        </div>
+        <p class="nombres-padres">
+          Luis Antonio Chavez Ramirez<br />& <br />Marisol Banda Herrera
+        </p>
+
+        <div class="titulo-seccion" style="margin-top: 2rem">
+          <h3 class="titulo-dorado">Padrinos</h3>
+          <div class="detalle-dorado"></div>
+        </div>
+        <p class="nombres-padrinos">
+          Jose Luis Banda Herrera<br />& <br />Amairani Ramirez Hernandez
+        </p>
       </div>
 
       <div class="bloque">
-        <h2 style="text-align: center">Cuenta regresiva</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Cuenta regresiva</h3>
+          <div class="detalle-dorado"></div>
+        </div>
         <div class="contador" id="contador">
           <div class="item">
             <div class="num" id="dias">00</div>
@@ -461,7 +554,10 @@
       </div>
 
       <div class="bloque">
-        <h2 style="text-align: center">Código de vestimenta</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Código de vestimenta</h3>
+          <div class="detalle-dorado"></div>
+        </div>
         <p style="text-align: center; font-size: 1.1rem">Formal</p>
         <p
           style="
@@ -540,7 +636,10 @@
       </div>
 
       <div class="bloque">
-        <h2 style="text-align: center">Itinerario</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Itinerario</h3>
+          <div class="detalle-dorado"></div>
+        </div>
         <div class="itinerario">
           <div class="itinerario-item">
             <span class="itinerario-hora">05:30 pm</span> Ceremonia religiosa
@@ -551,9 +650,31 @@
         </div>
       </div>
 
+      <div class="bloque lluvia-sobres">
+        <div class="lluvia-content">
+          <div class="titulo-seccion">
+            <h3 class="titulo-dorado">Lluvia de Sobres</h3>
+            <div class="detalle-dorado"></div>
+          </div>
+          <div class="icono-sobre">💌</div>
+          <p class="texto-lluvia">
+            Tu compañía es el mejor regalo, pero si deseas obsequiarme algo y no
+            sabes qué, agradeceré que sea en efectivo. En la entrada de la
+            fiesta encontrarás una cajita donde podrás depositar tu sobre,
+            gracias.
+          </p>
+        </div>
+      </div>
+
       <div class="bloque ubicacion">
-        <h2 style="text-align: center">Ubicación</h2>
-        <h2 style="text-align: center">Parroquia</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Ubicación</h3>
+          <div class="detalle-dorado"></div>
+        </div>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Parroquia</h3>
+          <div class="detalle-dorado"></div>
+        </div>
         <p style="text-align: center">Parroquia de la Preciosa Sangre</p>
         <iframe
           src="https://www.google.com/maps/embed?pb=!4v1770067799286!6m8!1m7!1sKJJp9HtWtXTn_SBY9GBe6A!2m2!1d19.55760592333539!2d-99.1357761972113!3f113.01638630956644!4f0!5f0.7820865974627469"
@@ -574,7 +695,10 @@
       </div>
 
       <div class="bloque ubicacion">
-        <h2 style="text-align: center">Salón</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Salón</h3>
+          <div class="detalle-dorado"></div>
+        </div>
         <p style="text-align: center">Salón jardín luigi</p>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7581.907773137109!2d-99.1404978614855!3d19.54892471567756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f70c1442f6d9%3A0x22bc6f191bab28c9!2zU2Fsw7NuIGphcmTDrW4gbHVpZ2k!5e0!3m2!1ses-419!2smx!4v1770077831018!5m2!1ses-419!2smx"
@@ -595,16 +719,33 @@
       </div>
 
       <div class="bloque confirmar">
-        <h2>¿Confirmas tu asistencia?</h2>
+        <div class="titulo-seccion">
+          <h3 class="titulo-dorado">Confirma tu asistencia</h3>
+          <div class="detalle-dorado"></div>
+        </div>
+        <p
+          style="
+            font-size: 1.1rem;
+            color: #625d5d;
+            margin: 2rem 0;
+            line-height: 1.6;
+            text-align: center;
+            font-style: italic;
+          "
+        >
+          ¡Hola! Me haría muy feliz que me acompañes en este día tan especial
+          para mí. <br />¿Me ayudas confirmando si podrás venir? ¡Te espero con
+          mucha ilusión!
+        </p>
         <a
           href="https://wa.me/5215630129651?text=¡Claro%20que%20sí%20Kitzya!%20Va%20a%20ser%20un%20placer%20acompañarte%20en%20tu%20fiesta%20🎉"
           target="_blank"
-          ><button>Confirmar</button></a
+          ><button>📱 Confirmar</button></a
         >
         <a
           href="https://pbs.twimg.com/media/FS_FCodUUAAsTjz.jpg"
           target="_blank"
-          ><button>No puedo asistir</button></a
+          ><button>😔 No puedo asistir</button></a
         >
       </div>
     </div>
